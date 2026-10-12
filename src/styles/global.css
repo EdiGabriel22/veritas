@@ -1528,15 +1528,21 @@ fieldset.field {
   }
 
   .stats {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    padding: 6px 0;
   }
 
-  .stats > div:nth-child(2n) {
-    border-left: 1px solid rgba(255, 255, 255, 0.16);
+  .stats > div {
+    padding: 14px 4px;
   }
 
-  .stats > div:nth-child(n + 3) {
+  .stats > div + div {
+    border-left: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .stats strong {
+    font-size: 18px;
   }
 }
 

@@ -1,3 +1,8 @@
+export function asset(path: string) {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  return `${base}/${path.replace(/^\//, "")}`;
+}
+
 export const contact = {
   email: "contato@veritasenergia.com",
   phoneDisplay: "(48) 99625-7474",
@@ -35,35 +40,35 @@ export const services = [
     number: "01",
     title: "Estudo e cotação gratuitos",
     text: "Analisamos as faturas dos últimos 12 meses, cotamos com as comercializadoras parceiras e apresentamos a economia projetada para o seu perfil de consumo.",
-    image: "/images/service-1.png",
+    image: asset("/images/service-1.png"),
     alt: "Painel de auditoria de energia com gráficos de consumo e economia",
   },
   {
     number: "02",
     title: "Migração e trâmites na CCEE",
     text: "Conduzimos a denúncia do contrato com a distribuidora, a adequação da medição e a adesão à CCEE, na modalidade varejista ou atacadista.",
-    image: "/images/service-2.png",
+    image: asset("/images/service-2.png"),
     alt: "Equipe em reunião analisando propostas e indicadores de energia",
   },
   {
     number: "03",
     title: "Gestão mensal e relatório de economia",
     text: "Conferimos a medição e as faturas da distribuidora e da comercializadora. Todo mês você recebe um relatório com a economia apurada.",
-    image: "/images/service-4.png",
+    image: asset("/images/service-4.png"),
     alt: "Profissional acompanhando relatórios de energia em monitores",
   },
   {
     number: "04",
     title: "Relacionamento com a distribuidora",
     text: "Abertura e acompanhamento de protocolos, contestação de erros de faturamento, pedidos de ressarcimento e ajustes de demanda contratada.",
-    image: "/images/service-3.png",
+    image: asset("/images/service-3.png"),
     alt: "Conferência de fatura de energia sobre a mesa",
   },
   {
     number: "05",
     title: "Consultoria técnica e regulatória",
     text: "Revisão de modalidade tarifária e de demanda, acompanhamento das mudanças de regras do setor e suporte à sua equipe de engenharia.",
-    image: "/images/service-2.png",
+    image: asset("/images/service-2.png"),
     alt: "Reunião técnica para consultoria regulatória de energia",
   },
 ];
@@ -88,7 +93,7 @@ export const solutions: Solution[] = [
       "Energia com preço negociado e contrato sob medida",
       "Modalidade varejista ou atacadista, conforme o perfil",
     ],
-    image: "/images/solution-1.png",
+    image: asset("/images/solution-1.png"),
     alt: "Subestação de energia ao pôr do sol",
   },
   {
@@ -98,7 +103,7 @@ export const solutions: Solution[] = [
     points: [],
     callout:
       "Resultado real. Nossos clientes rurais tiveram os contratos adequados ao seu perfil de consumo e eliminaram gastos desnecessários.",
-    image: "/images/solution-4.png",
+    image: asset("/images/solution-4.png"),
     alt: "Linhas de transmissão sobre paisagem rural ao entardecer",
     tone: "dark" as const,
   },
@@ -110,7 +115,7 @@ export const solutions: Solution[] = [
       "Energia armazenada para uso no horário de ponta",
       "Análise de viabilidade antes da proposta",
     ],
-    image: "/images/solution-2.png",
+    image: asset("/images/solution-2.png"),
     alt: "Quadro elétrico de um sistema de armazenamento",
   },
   {
@@ -118,7 +123,7 @@ export const solutions: Solution[] = [
     title: "Baixa tensão",
     text: "Unidades em baixa tensão ainda não podem migrar para o mercado livre. Com nossas empresas parceiras de geração compartilhada, recebem créditos de energia que reduzem o valor da conta.",
     points: ["Sem obras e sem investimento", "Economia já na conta da distribuidora"],
-    image: "/images/solution-3.png",
+    image: asset("/images/solution-3.png"),
     alt: "Geração solar em telhados comerciais ao entardecer",
   },
   {
@@ -126,7 +131,7 @@ export const solutions: Solution[] = [
     title: "Alta tensão sem viabilidade no ACL",
     text: "Quando o mercado livre não compensa para o seu perfil de consumo, a geração compartilhada pode ser a alternativa, conforme a disponibilidade de usinas na área da sua distribuidora.",
     points: ["Avaliação incluída no estudo gratuito"],
-    image: "/images/hero.png",
+    image: asset("/images/hero.png"),
     alt: "Linhas de transmissão ao pôr do sol",
   },
 ];
@@ -154,25 +159,25 @@ export const steps = [
     number: "01",
     title: "Envie suas faturas",
     text: "As contas dos últimos 12 meses bastam para começar. Sem cadastro longo.",
-    icon: "/icons/step-1.svg",
+    icon: asset("/icons/step-1.svg"),
   },
   {
     number: "02",
     title: "Receba o estudo",
     text: "Um engenheiro apresenta a análise, as cotações e a economia projetada. Sem custo.",
-    icon: "/icons/step-2.svg",
+    icon: asset("/icons/step-2.svg"),
   },
   {
     number: "03",
     title: "Migração",
     text: "A Veritas conduz os trâmites com a distribuidora, a comercializadora e a CCEE.",
-    icon: "/icons/step-3.svg",
+    icon: asset("/icons/step-3.svg"),
   },
   {
     number: "04",
     title: "Acompanhamento",
     text: "Relatório mensal de economia, conferência de faturas e reuniões periódicas.",
-    icon: "/icons/step-4.svg",
+    icon: asset("/icons/step-4.svg"),
   },
 ];
 

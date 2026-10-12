@@ -1,11 +1,11 @@
 ---
-import { pillars } from "../data/site";
+import { asset, pillars } from "../data/site";
 ---
 
 <section class="section" id="quem-somos">
   <div class="container about-grid">
     <div class="about-photo" data-reveal="left">
-      <img src="/images/about.png" alt="Usina solar conectada à rede de transmissão" />
+      <img src={asset("/images/about.png")} alt="Usina solar conectada à rede de transmissão" />
     </div>
     <div class="about-copy" data-reveal="right">
       <p class="eyebrow">Quem somos</p>
