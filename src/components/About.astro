@@ -1,0 +1,39 @@
+---
+import { pillars } from "../data/site";
+---
+
+<section class="section" id="quem-somos">
+  <div class="container about-grid">
+    <div class="about-photo" data-reveal="left">
+      <img src="/images/about.png" alt="Usina solar conectada à rede de transmissão" />
+    </div>
+    <div class="about-copy" data-reveal="right">
+      <p class="eyebrow">Quem somos</p>
+      <h2 class="section-title">Gestora de energia para empresas dentro e fora do mercado livre.</h2>
+      <p>
+        No mercado livre, atendemos consumidores varejistas e atacadistas em todas as etapas: estudo de viabilidade,
+        escolha do fornecedor, migração, operação na CCEE e acompanhamento da fatura depois que a economia começa.
+      </p>
+      <p>
+        No mercado cativo, cuidamos da conferência das faturas, da adequação de demanda e de modalidade tarifária e
+        dos protocolos com a distribuidora.
+      </p>
+      <p>
+        Não temos vínculo societário com comercializadoras. A recomendação segue o resultado líquido para a sua
+        unidade consumidora, e cada detalhe do faturamento é analisado por quem entende de engenharia.
+      </p>
+      <ul class="pillars">
+        {
+          pillars.map((item, index) => (
+            <li data-reveal style={`--reveal: ${index * 80}ms`}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8.2 6.2 11.4 13 4.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

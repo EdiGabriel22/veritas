@@ -1,0 +1,27 @@
+---
+import { nav } from "../data/site";
+---
+
+<header class="site-header" data-header>
+  <div class="header-inner" data-reveal="down">
+    <a class="logo" href="#topo" aria-label="Veritas Energia">
+      <img src="/icons/logo.svg" alt="Veritas" width="151" height="32" />
+    </a>
+    <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="Abrir menu">
+      <span></span>
+    </button>
+    <div class="nav-wrap" data-nav>
+      <nav class="nav-pills" aria-label="Principal">
+        {
+          nav.map((item) => (
+            <a href={item.href}>{item.label}</a>
+          ))
+        }
+      </nav>
+      <a class="btn" href="#contato">
+        Análise gratuita
+        <img src="/icons/arrow-right-light.svg" alt="" width="18" height="18" />
+      </a>
+    </div>
+  </div>
+</header>

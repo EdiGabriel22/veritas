@@ -1,0 +1,91 @@
+---
+const steps = [
+  {
+    number: "01",
+    title: "Envie suas faturas",
+    text: "As contas dos últimos 12 meses bastam para começar. Sem cadastro longo.",
+    icon: "file",
+  },
+  {
+    number: "02",
+    title: "Receba o estudo",
+    text: "Um engenheiro apresenta a análise, as cotações e a economia projetada. Sem custo.",
+    icon: "chart",
+  },
+  {
+    number: "03",
+    title: "Migração",
+    text: "A Veritas conduz os trâmites com a distribuidora, a comercializadora e a CCEE.",
+    icon: "building",
+  },
+  {
+    number: "04",
+    title: "Acompanhamento",
+    text: "Relatório mensal de economia, conferência de faturas e reuniões periódicas.",
+    icon: "calendar",
+  },
+];
+---
+
+<section class="process" id="como-funciona">
+  <div class="process-bg" aria-hidden="true">
+    <img src="/images/process-bg.png" alt="" />
+  </div>
+  <div class="process-inner">
+    <div class="process-head" data-reveal>
+      <p class="eyebrow">Como funciona</p>
+      <h2>Quatro etapas. A primeira é enviar suas faturas.</h2>
+      <p>O estudo é gratuito e sem compromisso. A decisão de migrar é sua, com os números na mesa.</p>
+    </div>
+    <div class="steps" data-steps>
+      {
+        steps.map((step, index) => (
+          <button
+            class:list={["step-card", { "is-open": index === 0 }]}
+            data-reveal
+            style={`--reveal: ${index * 90}ms`}
+            type="button"
+            data-step
+            aria-expanded={index === 0 ? "true" : "false"}
+          >
+            <span class="step-icon" aria-hidden="true">
+              {step.icon === "file" && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M7 3.5h7.2L19 8.2V20.5H7V3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+                  <path d="M14 3.8V8.4h5M9.2 13h5.5M9.2 16.2h3.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+                </svg>
+              )}
+              {step.icon === "chart" && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 16.5 9 11l3.2 3.2L20 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M14.5 7H20v5.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+              {step.icon === "building" && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 20.5h16M6.5 20.5V8.2L12 4.5l5.5 3.7v12.3" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+                  <path d="M10 20.5v-4.2h4v4.2M9.2 10.8h.1M14.7 10.8h.1M9.2 14.2h.1M14.7 14.2h.1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+                </svg>
+              )}
+              {step.icon === "calendar" && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <rect x="4" y="5.5" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.7" />
+                  <path d="M8 3.8v3.2M16 3.8v3.2M4 10h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+                </svg>
+              )}
+            </span>
+            <span class="step-body">
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </span>
+            <span class="watermark" aria-hidden="true">{step.number}</span>
+          </button>
+        ))
+      }
+    </div>
+    <a class="btn btn-fill" href="#contato" data-reveal style="--reveal: 180ms">
+      Começar pela análise gratuita
+      <img src="/icons/arrow-right.svg" alt="" width="18" height="18" />
+    </a>
+  </div>
+</section>

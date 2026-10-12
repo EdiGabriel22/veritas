@@ -1,0 +1,27 @@
+---
+import { faqs } from "../data/site";
+---
+
+<section class="section" id="faq">
+  <div class="container">
+    <div class="center-head" data-reveal>
+      <p class="eyebrow">Perguntas frequentes</p>
+      <h2 class="section-title">Dúvidas comuns sobre o mercado livre</h2>
+    </div>
+    <div class="faq-list">
+      {
+        faqs.map((item, index) => (
+          <article class="faq-item is-open" data-faq data-reveal style={`--reveal: ${(index % 2) * 80}ms`}>
+            <h3>
+              <button type="button" aria-expanded="true">
+                {item.question}
+                <span aria-hidden="true">−</span>
+              </button>
+            </h3>
+            <p>{item.answer}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+---
+import { solutions, timeline } from "../data/site";
+---
+
+<section class="section" id="solucoes">
+  <div class="container">
+    <div class="center-head" data-reveal>
+      <p class="eyebrow">Soluções</p>
+      <h2 class="section-title">Uma solução para cada perfil de consumo</h2>
+      <p class="section-lead lead-muted">
+        Nem toda unidade consumidora tem o mesmo caminho. Avaliamos a sua e indicamos a alternativa com melhor
+        resultado, dentro ou fora do mercado livre.
+      </p>
+    </div>
+    <div class="solution-list">
+      {
+        solutions.map((item) => (
+          <article
+            class:list={["solution-card", { "is-dark": item.tone === "dark" }]}
+            data-reveal="fade"
+          >
+            <div class="solution-copy">
+              <p class="kicker">{item.kicker}</p>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+              {
+                item.points.length > 0 && (
+                  <ul class="checks">
+                    {item.points.map((point) => (
+                      <li>{point}</li>
+                    ))}
+                  </ul>
+                )
+              }
+              {
+                item.callout && (
+                  <div class="callout">
+                    <strong>Resultado real.</strong>
+                    <span>{item.callout.replace(/^Resultado real\.\s*/, "")}</span>
+                  </div>
+                )
+              }
+            </div>
+            <img src={item.image} alt={item.alt} />
+          </article>
+        ))
+      }
+    </div>
+    <div class="timeline">
+      <p class="kicker" data-reveal>Cronograma de abertura do mercado livre</p>
+      <ol class="timeline-grid">
+        {
+          timeline.map((item, index) => (
+            <li data-reveal style={`--reveal: ${index * 120}ms`}>
+              <span class:list={["dot", { filled: index === 0 }]} aria-hidden="true"></span>
+              <strong>{item.date}</strong>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="source">Base: Portaria MME nº 50/2022 e Lei nº 15.269/2025.</p>
+    </div>
+  </div>
+</section>

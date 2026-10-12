@@ -1,0 +1,31 @@
+---
+import { services } from "../data/site";
+---
+
+<section class="section" id="servicos">
+  <div class="container">
+    <div class="center-head" data-reveal>
+      <p class="eyebrow">Serviços</p>
+      <h2 class="section-title">Do estudo de viabilidade à conta que chega todo mês</h2>
+      <p class="section-lead lead-muted">Um único parceiro para planejar, migrar e acompanhar a energia da sua empresa.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-photo" data-reveal="left">
+        <img src="/images/service-4.png" alt="Engenheira acompanhando relatórios de energia" />
+      </div>
+      <div class="service-list">
+        {
+          services.map((service, index) => (
+            <article class="service-item" data-reveal="right" style={`--reveal: ${index * 90}ms`}>
+              <span class="num">{service.number}</span>
+              <div>
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

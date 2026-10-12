@@ -1,0 +1,163 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Veritas Energia | Gestão de energia para empresas",
+  description = "A Veritas conduz a migração para o mercado livre, cuida dos trâmites na CCEE e confere cada fatura. Estudo e cotação gratuitos, com atendimento direto de engenheiros.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/icons/logo.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+    <script is:inline>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <slot />
+    <script>
+      const header = document.querySelector("[data-header]");
+      const toggle = document.querySelector("[data-nav-toggle]");
+      const nav = document.querySelector("[data-nav]");
+
+      const onScroll = () => {
+        header?.classList.toggle("is-scrolled", window.scrollY > 8);
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      toggle?.addEventListener("click", () => {
+        const open = nav?.classList.toggle("is-open") ?? false;
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+
+      nav?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          nav.classList.remove("is-open");
+          toggle?.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      const sections = [...document.querySelectorAll<HTMLElement>("main section[id]")];
+      const navLinks = [...document.querySelectorAll<HTMLAnchorElement>(".nav-pills a")];
+      const markCurrent = () => {
+        const marker = window.scrollY + 140;
+        let current = sections[0]?.id;
+        sections.forEach((section) => {
+          if (section.offsetTop <= marker) current = section.id;
+        });
+        navLinks.forEach((link) => {
+          const active = link.getAttribute("href") === `#${current}`;
+          if (active) link.setAttribute("aria-current", "true");
+          else link.removeAttribute("aria-current");
+        });
+      };
+      markCurrent();
+      window.addEventListener("scroll", markCurrent, { passive: true });
+
+      const stepsRoot = document.querySelector("[data-steps]");
+      if (stepsRoot) {
+        const cards = [...stepsRoot.querySelectorAll<HTMLButtonElement>("[data-step]")];
+        const desktop = window.matchMedia("(min-width: 1101px)");
+        cards.forEach((card) => {
+          card.addEventListener("click", () => {
+            if (!desktop.matches) return;
+            cards.forEach((item) => {
+              const open = item === card;
+              item.classList.toggle("is-open", open);
+              item.setAttribute("aria-expanded", String(open));
+            });
+          });
+        });
+      }
+
+      document.querySelectorAll<HTMLElement>("[data-faq]").forEach((item) => {
+        const button = item.querySelector("button");
+        const mark = button?.querySelector("span");
+        button?.addEventListener("click", () => {
+          const open = item.classList.toggle("is-open");
+          button.setAttribute("aria-expanded", String(open));
+          if (mark) mark.textContent = open ? "−" : "+";
+        });
+      });
+
+      document.querySelectorAll<HTMLInputElement>('input[type="file"]').forEach((input) => {
+        input.addEventListener("change", () => {
+          const label = input.parentElement?.querySelector("[data-file-label]");
+          if (label) label.textContent = input.files?.[0]?.name || "Anexe o PDF da fatura mais recente";
+        });
+      });
+
+      const form = document.querySelector<HTMLFormElement>("[data-form]");
+      const success = document.querySelector<HTMLElement>("[data-form-success]");
+      form?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+        const file = form.querySelector<HTMLInputElement>('input[type="file"]');
+        const selected = file?.files?.[0];
+        if (selected && selected.type !== "application/pdf" && !selected.name.toLowerCase().endsWith(".pdf")) {
+          file?.setCustomValidity("Anexe a fatura em PDF.");
+          file?.reportValidity();
+          return;
+        }
+        file?.setCustomValidity("");
+        form.hidden = true;
+        if (success) success.hidden = false;
+      });
+
+      const revealEls = [...document.querySelectorAll<HTMLElement>("[data-reveal]")];
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const finishReveal = (el: HTMLElement) => el.classList.add("is-done");
+
+      if (reduced) {
+        revealEls.forEach((el) => el.classList.add("is-in", "is-done"));
+      } else {
+        const startReveal = (el: HTMLElement) => {
+          if (el.classList.contains("is-in")) return;
+          el.classList.add("is-in");
+          window.setTimeout(() => finishReveal(el), 2400);
+        };
+
+        revealEls.forEach((el) => {
+          el.addEventListener(
+            "animationend",
+            (event) => {
+              if (event.target === el) finishReveal(el);
+            },
+            { once: true },
+          );
+        });
+
+        const scan = () => {
+          const limit = window.innerHeight - 8;
+          revealEls.forEach((el) => {
+            if (el.classList.contains("is-in")) return;
+            const rect = el.getBoundingClientRect();
+            if (rect.top < limit) startReveal(el);
+          });
+        };
+
+        scan();
+        window.addEventListener("scroll", scan, { passive: true });
+        window.addEventListener("resize", scan);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+---
+import { contact } from "../data/site";
+---
+
+<section class="contact" id="contato">
+  <div class="contact-bg" aria-hidden="true">
+    <img src="/images/solution-4.png" alt="" />
+  </div>
+  <div class="contact-copy" data-reveal="left">
+    <h2>Mercado livre, geração compartilhada ou BESS: o estudo mostra o melhor caminho para a sua unidade.</h2>
+    <p>Atendemos consumidores de média e alta tensão, rurais e empresas em baixa tensão.</p>
+  </div>
+  <div class="form-card" data-reveal="right">
+    <h2>Solicite sua análise gratuita</h2>
+    <p class="intro">
+      Preencha os dados e anexe uma fatura recente. Um engenheiro entra em contato para apresentar o estudo.
+    </p>
+    <form data-form>
+      <div class="form-grid">
+        <label class="field">
+          <span>Nome completo</span>
+          <input name="nome" type="text" placeholder="Seu nome" required autocomplete="name" />
+        </label>
+        <label class="field">
+          <span>Empresa</span>
+          <input name="empresa" type="text" placeholder="Razão social ou fantasia" required autocomplete="organization" />
+        </label>
+        <label class="field">
+          <span>E-mail corporativo</span>
+          <input name="email" type="email" placeholder="nome@empresa.com.br" required autocomplete="email" />
+        </label>
+        <label class="field">
+          <span>WhatsApp</span>
+          <input name="whatsapp" type="tel" placeholder="(00) 00000-0000" required autocomplete="tel" />
+        </label>
+        <label class="field">
+          <span>Distribuidora</span>
+          <input name="distribuidora" type="text" placeholder="Ex.: Celesc, Copel" required />
+        </label>
+        <label class="field">
+          <span>Cidade / UF</span>
+          <input name="cidade" type="text" placeholder="Ex.: Florianópolis / SC" required />
+        </label>
+        <fieldset class="field full">
+          <span>Tensão de fornecimento</span>
+          <div class="choices">
+            <label><input type="radio" name="tensao" value="media-alta" required /> Média ou alta tensão</label>
+            <label><input type="radio" name="tensao" value="baixa" /> Baixa tensão</label>
+            <label><input type="radio" name="tensao" value="nao-sei" /> Não sei</label>
+          </div>
+        </fieldset>
+        <fieldset class="field full">
+          <span>Possui geração distribuída (solar)?</span>
+          <div class="choices">
+            <label><input type="radio" name="gd" value="sim" required /> Sim</label>
+            <label><input type="radio" name="gd" value="nao" /> Não</label>
+          </div>
+        </fieldset>
+        <label class="field full">
+          <span>Fatura de energia</span>
+          <span class="dropzone">
+            <input name="fatura" type="file" accept="application/pdf,.pdf" required />
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 11.5V3.5M8 3.5 5.2 6.2M8 3.5l2.8 2.7M3 12.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+            <em data-file-label>Anexe o PDF da fatura mais recente</em>
+          </span>
+        </label>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-fill" type="submit">
+          Enviar e solicitar análise
+          <img src="/icons/arrow-right.svg" alt="" width="18" height="18" />
+        </button>
+        <p class="form-note">
+          Dúvidas? <a href={`tel:${contact.phoneTel}`}>{contact.phoneDisplay}</a>
+        </p>
+      </div>
+    </form>
+    <div class="form-success" data-form-success hidden>
+      <h3>Recebemos seus dados.</h3>
+      <p>Um engenheiro da Veritas entra em contato para apresentar o estudo. Se preferir, fale agora pelo WhatsApp.</p>
+    </div>
+  </div>
+</section>

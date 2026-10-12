@@ -1,0 +1,6 @@
+node_modules/
+.pdf-preview/
+dist/
+.astro/
+.DS_Store
+*.log
